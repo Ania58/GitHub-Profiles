@@ -41,7 +41,9 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
-
+*{
+	box-sizing: border-box;
+}
 
 /*Here's the project*/
 
@@ -54,10 +56,27 @@ body {
     height: 100vh;
 }
 
+.section-container{
+	max-width: 320px;
+	width: 100%;
+	padding: 10px;
+}
+
 .search-user {
     border-radius: 10px;
     border: none;
     background-color: #4c2885;
     color: #fff;
     padding: 16px;
+	width: 100%;
+	font-size: 20px;
+}
+.search-user:focus{
+	outline: none; 
+	
+}
+
+.repos a{
+	margin: 0 20px;
+	color: white;
 }
