@@ -15,3 +15,24 @@ const fetchUser = async() => {
 }
 
 fetchUser()
+
+/*
+
+const userData = {
+    name: data.name,
+    bio: data.bio,
+    image: data.avatar_url,
+    followers: data.followers,
+    following: data.following,
+    repositories: data.public_repos
+}
+const template = `
+    <div class="user-details">
+        <img>${image}
+        <h1>${name}</h1>
+        <p>${followers}<strong>Followers</strong></p>
+        <p>${following}<strong>Following</strong></p>
+        <p>${repositories}<strong>Repos</strong></p>
+    </div>
+    `
+*/
