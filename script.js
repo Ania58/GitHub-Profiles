@@ -4,6 +4,7 @@ const infoContainer = document.getElementById('info-container')
 
 
 const fetchUser = async(userName) => {
+    userInput.value = '' // limpiamos el input
     try {
         const getUser = await axios(`${APIURL}${userName}`)
     
@@ -33,7 +34,13 @@ const showUserData = async (userInput) => {
     const {name,bio,image,followers,following,repositories} = dataUser
     // console.log(repositories);
     const repos = repositories.slice(repositories.length - 5,repositories.length).map(rep => `<a href="${rep.clone_url}">${rep.name}</a>`).join('') //LUEGO OTRO DIA CUANDO ESTES MAS FRESH LO VAMOS A EXPLICAR
-    console.log(repositories[0]);
+    
+    dataUser ? infoContainer.classList.add('showInfo-container') : null
+    console.log(repositories);
+    console.log('AQUI TERMINA REPOS SIN SORT');
+    console.log('------------------------------');
+    
+    sortRepos(repositories);
     
     
     
@@ -44,9 +51,12 @@ const showUserData = async (userInput) => {
         </div>
         <div class="user-info">
             <h1>${name}</h1>
-            <p class="user-bio">${bio}</p>
-            <p class="user-followers">${followers} <span>Followers</span></p>
-            <p class="user-following">${following} <span>Following</span></p>
+            <p class="user-bio">${bio ? bio : 'Bio'}</p>
+            <div class='issue-container'>
+            <p class="user-followers">${followers}<span>Followers</span></p>
+            <p class="user-following">${following}<span>Following</span></p>
+            <p class="user-following">${repositories.length}<span>reps</span></p>
+            </div>
             <div class='repos'>
             ${repos}
             </div>
@@ -59,13 +69,20 @@ const showUserData = async (userInput) => {
     
 }
 
-userInput.addEventListener('change', () => {
+userInput.addEventListener('keyup', (e) => {
     const getUserInput = userInput.value
     
-    showUserData(getUserInput) 
+    
+    e.key === 'Enter' ? showUserData(getUserInput) : null
+    
+    
 } )
 
-
+// const sortRepos = (repos) => {
+//     const reposSorted = repos.sort((a,b) => a.updated_at > b.updated_at)
+//     console.log(reposSorted);
+    
+// }
 
 /*
 
