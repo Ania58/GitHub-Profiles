@@ -60,6 +60,7 @@ body {
 	max-width: 320px;
 	width: 100%;
 	padding: 10px;
+	margin: 10px;
 }
 
 .search-user {
@@ -76,7 +77,58 @@ body {
 	
 }
 
+.info-container {
+	display: flex;
+    flex-direction: column;
+    align-items: center;
+	color: white;
+	max-width: 800px;
+	width: 100%;
+	background-color: #4c2885;
+	border-radius: 20px;
+	padding: 26px;
+}
+
+.user-details {
+	display: flex;
+	justify-content: center;
+	
+}
+
+.user-photo {
+	width: 150px;
+	height: 150px;
+	border: 10px solid #2a2a72;
+	border-radius: 50%;
+}
+
+.user-info {
+	display: flex;
+	gap: 5px;
+}
+
+.user-info p {
+	display: flex;
+	align-items: center;
+}
+
+h1 {
+	font-weight: bold;
+	font-size: 20px;
+}
+
+span {
+	font-weight: bold;;
+}
+
 .repos a{
 	margin: 0 20px;
 	color: white;
+	text-decoration: none;
+	background-color: #212a72;
+	font-size: 14px;
+	padding: .25rem .5rem;
+    margin-right: .5rem;
+    margin-bottom: .5rem;
+    display: inline-block;
 }

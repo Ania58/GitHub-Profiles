@@ -39,13 +39,17 @@ const showUserData = async (userInput) => {
     
     const template = `
     <div class="user-details">
-        <img src="${image}"/>
-        <h1>${name}</h1>
-        <p>${bio}</p>
-        <p>${followers}<span>Followers</span></p>
-        <p>${following}<span>Following</span></p>
-        <div class='repos'>
-        ${repos}
+        <div class>
+            <img src="${image}" class="user-photo" alt="user-photo"/>
+        </div>
+        <div class="user-info">
+            <h1>${name}</h1>
+            <p class="user-bio">${bio}</p>
+            <p class="user-followers">${followers} <span>Followers</span></p>
+            <p class="user-following">${following} <span>Following</span></p>
+            <div class='repos'>
+            ${repos}
+            </div>
         </div>
     </div>
     `
