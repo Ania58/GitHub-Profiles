@@ -40,7 +40,7 @@ const showUserData = async (userInput) => {
     console.log('AQUI TERMINA REPOS SIN SORT');
     console.log('------------------------------');
     
-    sortRepos(repositories);
+    //sortRepos(repositories);
     
     
     
