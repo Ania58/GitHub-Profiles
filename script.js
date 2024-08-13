@@ -7,7 +7,8 @@ const fetchUser = async(userName) => {
     userInput.value = '' // limpiamos el input
     try {
         const getUser = await axios(`${APIURL}${userName}`)
-    
+        console.log(`${APIURL}${userName}`);
+        
         const repositories = await  fetchProjects(userName)
         
         const userData = {
@@ -33,14 +34,12 @@ const showUserData = async (userInput) => {
     const dataUser = await fetchUser(userInput)
     const {name,bio,image,followers,following,repositories} = dataUser
     // console.log(repositories);
-    const repos = repositories.slice(repositories.length - 5,repositories.length).map(rep => `<a href="${rep.clone_url}">${rep.name}</a>`).join('') //LUEGO OTRO DIA CUANDO ESTES MAS FRESH LO VAMOS A EXPLICAR
+    const reposSorted = sortRepos([...repositories])
+
+    const repos = reposSorted.slice(repositories.length - 5,repositories.length).map(rep => `<a href="${rep.clone_url}">${rep.name}</a>`).join('') 
     
     dataUser ? infoContainer.classList.add('showInfo-container') : null
-    console.log(repositories);
-    console.log('AQUI TERMINA REPOS SIN SORT');
-    console.log('------------------------------');
-    
-    //sortRepos(repositories);
+     
     
     
     
@@ -78,29 +77,31 @@ userInput.addEventListener('keyup', (e) => {
     
 } )
 
-// const sortRepos = (repos) => {
-//     const reposSorted = repos.sort((a,b) => a.updated_at > b.updated_at)
-//     console.log(reposSorted);
+const sortRepos = (repos) => {
+     const reposSorted = repos.sort((a,b) => new Date(a.updated_at).getTime()  - new Date(b.updated_at).getTime())
+     return reposSorted
     
-// }
-
-/*
-
-const userData = {
-    name: data.name,
-    bio: data.bio,
-    image: data.avatar_url,
-    followers: data.followers,
-    following: data.following,
-    repositories: data.public_repos
 }
-const template = `
-    <div class="user-details">
-        <img>${image}
-        <h1>${name}</h1>
-        <p>${followers}<span>Followers</span></p>
-        <p>${following}<span>Following</span></p>
-        <p>${repositories}<span>Repos</span></p>
-    </div>
-    `
-*/
+
+//const data = new Date('2024-06-10T19:29:17Z')
+//sconsole.log(data.getTime() / 1000);
+
+
+
+// const userData = {
+//     name: data.name,
+//     bio: data.bio,
+//     image: data.avatar_url,
+//     followers: data.followers,
+//     following: data.following,
+//     repositories: data.public_repos
+// }
+// const template = `
+//     <div class="user-details">
+//         <img>${image}
+//         <h1>${name}</h1>
+//         <p>${followers}<span>Followers</span></p>
+//         <p>${following}<span>Following</span></p>
+//         <p>${repositories}<span>Repos</span></p>
+//     </div>
+//     `
